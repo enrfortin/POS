@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html class="" dir="" lang="en">
+<head>
+	<meta charset="utf-8">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+	<meta content="IE=edge" http-equiv="X-UA-Compatible">
+	<meta content="width=device-width,initial-scale=1.0" name="viewport">
+	<link href="dashboardcss/style.css" rel="stylesheet">
+	<link href="dashboardcss/style1.css" rel="stylesheet">
+	<link href="dashboardcss/style3.css" rel="stylesheet">
+	<title>B4XCode | Ultimate Inventory With POS</title>
+	<script charset="utf-8" src="js/bundle/92.js">
+	</script>
+	<script charset="utf-8" src="js/bundle/People.js">
+	</script>
+	<script charset="utf-8" src="js/bundle/0.js">
+	</script>
+	<script charset="utf-8" src="js/bundle/Suppliers.js">
+	</script>
+	<script charset="utf-8" src="js/bundle/customizer.js">
+	</script>
+	<script charset="utf-8" src="js/bundle/vendors_largeSidebar_pos.js">
+	</script>
+	<script charset="utf-8" src="js/bundle/vendors_largeSidebar.js">
+	</script>
+	<script charset="utf-8" src="js/bundle/largeSidebar.js">
+	</script>
+	<script charset="utf-8" src="js/bundle/vue-perfect-scrollbar.js">
+	</script>
+	<style type="text/css">
+	       .ps-container {
+	           position: relative
+	       }
+	</style>
+	
+	  <link href="lib/datatables/jquery.dataTables.css" rel="stylesheet">
+    <link href="lib/select2/css/select2.min.css" rel="stylesheet">
+	
+	<script src="/b4j_ws.js"></script>
+	
+	
+	
+	
+</head>
+<body class=" text-left">
+	 
+	<div>
+		<div>
+			<div class="app-admin-wrap layout-sidebar-large clearfix">
+				<div class="main-header">
+					<div class="logo">
+						<a class="" href="index.html"><img alt="" height="60" src="images/logo-default.png" width="60"></a>
+					</div>
+					<div class="menu-toggle" id="divmenutoggel">
+						<div></div>
+						<div></div>
+						<div></div>
+					</div>
+					<div style="margin: auto;"></div>
+					<div class="header-part-right">
+						<a class="btn btn-outline-primary tn-sm btn-rounded" href="POS/POS.html"><span class="ul-btn__text ml-1">POS</span></a>  
+					  
+						<div class="dropdown">
+							<div class="dropdown b-dropdown m-md-2 user col align-self-end d-none d-md-block btn-group" id="dropdown-1">
+								<!----><button onclick="document.location.replace('login.html');" aria-expanded="false" aria-haspopup="true" class="btn dropdown-toggle btn-link text-decoration-none dropdown-toggle-no-caret" id="dropdown-1__BV_toggle_" type="button"><img alt="" aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" id="userDropdown" src="images/avatar/imgsignout.png"></button>
+							 
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="side-content-wrap" >
+				<section class="ps-container sidebar-left rtl-ps-none ps scroll open ps--active-y" style=" overflow-y: auto !important; ">
+						<div >
+							<ul class="navigation-left" >
+								<li class="nav-item active" id="navmaindashboard" >
+									<a class="nav-item-hold"  href="index.html"><i class="nav-icon i-Bar-Chart" ></i> <span class="nav-text" >Dashboard</span></a>
+								</li>
+								<li class="nav-item"  id="navmainproducts">
+									<a class="nav-item-hold"  id="navmainproducts"><i class="nav-icon i-Library" id="navmainproducts"></i> <span class="nav-text" id="navmainproducts">Products</span></a>
+									<div class="triangle" id="navmainproducts"></div>
+								</li>
+								<li class="nav-item" id="navmainpadjustment" >
+									<a class="nav-item-hold"  id="navmainpadjustment"><i class="nav-icon i-Edit-Map" id="navmainpadjustment"></i> <span class="nav-text" id="navmainpadjustment" >Adjustment</span></a>
+									<div class="triangle" id="navmainpadjustment"></div>
+								</li>
+								<li class="nav-item"  id="navmaintransfers">
+									<a class="nav-item-hold"  id="navmaintransfers"><i class="nav-icon i-Back1" id="navmaintransfers"></i> <span class="nav-text" id="navmaintransfers" >Transfer</span></a>
+									<div class="triangle" id="navmaintransfers"></div>
+								</li>
+								<li class="nav-item"  id="navmainexpenses">
+									<a class="nav-item-hold" id="navmainexpenses"><i class="nav-icon i-Wallet" id="navmainexpenses"></i> <span class="nav-text" id="navmainexpenses" >Expenses</span></a>
+									<div class="triangle" id="navmainexpenses"></div>
+								</li>
+								 
+								<li class="nav-item"  id="navmainpurchases">
+									<a class="nav-item-hold"  id="navmainpurchases"><i class="nav-icon i-Receipt" id="navmainpurchases"></i> <span class="nav-text"  id="navmainpurchases">Purchases</span></a>
+									<div class="triangle" id="navmainpurchases"></div>
+								</li>
+								<li class="nav-item"   id="navmainsales">
+									<a class="nav-item-hold"  id="navmainsales"><i class="nav-icon i-Full-Cart" id="navmainsales"></i> <span class="nav-text" id="navmainsales">Sales</span></a>
+									<div class="triangle" id="navmainsales"></div>
+								</li>
+								<li class="nav-item"  id="navmainsale_return">
+									<a class="nav-item-hold"  id="navmainsale_return"><i class="nav-icon i-Right" id="navmainsale_return"></i> <span class="nav-text" id="navmainsale_return">Sales Return</span></a>
+									<div class="triangle" id="navmainsale_return"></div>
+								</li>
+								<li class="nav-item"  id="navmainpurchase_return" >
+									<a class="nav-item-hold"  id="navmainpurchase_return"><i class="nav-icon i-Left" id="navmainpurchase_return"></i> <span class="nav-text" id="navmainpurchase_return">Purchases Return</span></a>
+									<div class="triangle" id="navmainpurchase_return"></div>
+								</li>
+								<li class="nav-item"   id="navmainPeople">
+									<a class="nav-item-hold"  id="navmainPeople"><i class="nav-icon i-Business-Mens" id="navmainPeople" ></i> <span class="nav-text" id="navmainPeople" >People</span></a>
+									<div class="triangle" id="navmainPeople" ></div>
+								</li>
+								<li class="nav-item"   id="navmainsettings">
+									<a class="nav-item-hold"  id="navmainsettings"><i class="nav-icon i-Data-Settings" id="navmainsettings" ></i> <span class="nav-text" id="navmainsettings">Settings</span></a>
+									<div class="triangle" id="navmainsettings"></div>
+								</li>
+								
+								 
+							</ul>
+						</div>
+						<div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+							<div class="ps__thumb-x" style="left: 0px; width: 0px;" tabindex="0"></div>
+						</div>
+					 
+					</section>
+					<section class="ps-container sidebar-left-secondary ps rtl-ps-none" id="divlefthiddenitems" >
+						<div >
+							<ul class="childNav d-none" id="navmainproductschild" >
+								<li class="nav-item" >
+									<a class=""  href="AddProductsInfo.html"><i class="nav-icon i-Add-File" ></i> <span class="item-name" >Create product</span></a>
+								</li>
+								<li class="nav-item" >
+									<a class=""  href="ProductsInformation.html"><i class="nav-icon i-Files" ></i> <span class="item-name" >Product List</span></a>
+								</li>
+								<li class="nav-item" >
+									<a class=""  href="CreateBarcode.html"><i class="nav-icon i-Bar-Code" ></i> <span class="item-name" >Print barcode</span></a>
+								</li>
+							</ul> 
+														
+							<ul class="childNav d-none" id="navmainpadjustmentchild" >
+								<li class="nav-item" >
+									<a class=""  href="AddAdjustInfo.html"><i class="nav-icon i-Add-File" ></i> <span class="item-name" >Create Adjustment</span></a>
+								</li>
+								<li class="nav-item" >
+									<a class=""  href="AdjustmentInformation.html"><i class="nav-icon i-Files" ></i> <span class="item-name" >Adjustment List</span></a>
+								</li>
+							</ul>
+							<ul class="childNav d-none" id="navmaintransferschild" >
+								<li class="nav-item" >
+									<a class=""  href="AddTransferInfo.html"><i class="nav-icon i-Add-File" ></i> <span class="item-name" >Create Transfer</span></a>
+								</li>
+								<li class="nav-item" >
+									<a class=""  href="TransferInformation.html"><i class="nav-icon i-Files" ></i> <span class="item-name" >Transfer List</span></a>
+								</li>
+							</ul>
+							<ul class="childNav d-none" id="navmainexpenseschild" >
+								<li class="nav-item" >
+									<a class=""  href="AddExpensesInfo.html"><i class="nav-icon i-Add-File" ></i> <span class="item-name" >Create Expense</span></a>
+								</li>
+								<li class="nav-item" >
+									<a class=""  href="ExpensesInformation.html"><i class="nav-icon i-Files" ></i> <span class="item-name" >List Expenses</span></a>
+								</li>
+							 
+							</ul>
+						 
+							<ul class="childNav d-none" id="navmainpurchaseschild" >
+								<li class="nav-item" >
+									<a class=""  href="AddPurchaseInfo.html"><i class="nav-icon i-Add-File" ></i> <span class="item-name" >Create Purchase</span></a>
+								</li>
+								<li class="nav-item" >
+									<a class=""  href="PurchaseInformation.html"><i class="nav-icon i-Files" ></i> <span class="item-name" >Purchase List</span></a>
+								</li>
+							</ul>
+							<ul class="childNav d-none" id="navmainsaleschild" >
+								<li class="nav-item" >
+									<a class=""  href="AddSalesInfo.html"><i class="nav-icon i-Add-File" ></i> <span class="item-name" >Create Sale</span></a>
+								</li>
+								<li class="nav-item" >
+									<a class=""  href="SalesInformation.html"><i class="nav-icon i-Files" ></i> <span class="item-name" >Sale List</span></a>
+								</li>
+							</ul>
+							<ul class="childNav d-none" id="navmainsale_returnchild" >
+								<li class="nav-item" >
+									<a class=""  href="AddReturnSalesInfo.html"><i class="nav-icon i-Add-File" ></i> <span class="item-name" >Create Return</span></a>
+								</li>
+								<li class="nav-item" >
+									<a class=""  href="ReturnSalesInformation.html"><i class="nav-icon i-Files" ></i> <span class="item-name" >Return List</span></a>
+								</li>
+							</ul>
+							<ul class="childNav d-none" id="navmainpurchase_returnchild" >
+								<li class="nav-item" >
+									<a class=""  href="AddReturnPurchaseInfo.html"><i class="nav-icon i-Add-File" ></i> <span class="item-name" >Create Return</span></a>
+								</li>
+								<li class="nav-item" >
+									<a class=""  href="ReturnPurchaseInformation.html"><i class="nav-icon i-Files" ></i> <span class="item-name" >Return List</span></a>
+								</li>
+							</ul>
+							<ul class="childNav d-none" id="navmainPeoplechild" >
+								<li class="nav-item" >
+									<a class=""  href="CustomersInformation.html"><i class="nav-icon i-Administrator" ></i> <span class="item-name" >Customer List</span></a>
+								</li>
+								<li class="nav-item" >
+									<a class="router-link-exact-active open"  href="SupplierInformation.html"><i class="nav-icon i-Administrator" ></i> <span class="item-name" >Supplier List</span></a>
+								</li>
+								<li class="nav-item" >
+									<a class=""  href="UsersInformation.html"><i class="nav-icon i-Administrator" ></i> <span class="item-name" >User List</span></a>
+								</li>
+							</ul>
+							<ul class="childNav d-none" id="navmainsettingschild" >
+							  
+								<li class="nav-item" >
+									<a class=""  href="WarehouseInformation.html"><i class="nav-icon i-Clothing-Store" ></i> <span class="item-name" >Warehouse</span></a>
+								</li>
+								<li class="nav-item" >
+									<a class=""  href="CatsInformation.html"><i class="nav-icon i-Duplicate-Layer" ></i> <span class="item-name" >Category</span></a>
+								</li>
+								 
+								
+							  
+							</ul>
+							
+						</div>
+						<div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+							<div class="ps__thumb-x" style="left: 0px; width: 0px;" tabindex="0"></div>
+						</div>
+						<div class="ps__rail-y" style="top: 0px; right: 0px;">
+							<div class="ps__thumb-y" style="top: 0px; height: 0px;" tabindex="0"></div>
+						</div>
+					</section>
+					<div class="sidebar-overlay" ></div>
+				</div>
+				<main>
+					<div class="main-content-wrap d-flex flex-column flex-grow-1 sidenav-open">
+						<div class="main-content">
+							<div>
+								<div class="breadcrumb">
+									<h1>Users Information</h1>
+									<ul>
+										<li>
+											<a href="">Users</a>
+										</li>
+										<li>Users Information</li>
+									</ul>
+								</div>
+								<div class="separator-breadcrumb border-top"></div>
+							</div>
+							<div>
+								<div class="vgt-wrap">
+									<!---->
+									<div class="vgt-inner-wrap">
+										<!---->
+									 
+										<div class="vgt-fixed-header">
+											<!---->
+										</div>
+										<div class="vgt-responsive" style=" padding: 20px !important; ">
+										
+										
+										
+										
+										   <div class="form-layout">
+            <div class="row mg-b-25">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label">Name: <span class="tx-danger">*</span></label>
+                  <input class="form-control" type="text" id="txtname"  placeholder="Enter Name">
+                </div>
+              </div><!-- col-4 -->
+			  
+			    <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label">Email: <span class="tx-danger">*</span></label>
+                  <input class="form-control" type="text" id="txtuseremail"  placeholder="Enter Email">
+                </div>
+              </div><!-- col-4 -->
+			    <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label">Password: <span class="tx-danger">*</span></label>
+                  <input class="form-control" type="text" id="txtuserpassword"  placeholder="Enter Password">
+                </div>
+              </div><!-- col-4 -->
+			  
+			 
+            
+			
+            </div><!-- row -->
+
+            <div class="form-layout-footer">
+              <button class="btn btn-info mg-r-5" id="btnsave">Save information</button>
+              <button class="btn btn-secondary" id="btncancel">Cancel</button>
+            </div><!-- form-layout-footer -->
+          </div><!-- form-layout -->
+											
+											
+											
+										</div><!---->
+									</div>
+								</div>
+							</div><!---->
+							<!---->
+						</div>
+						<div class="flex-grow-1"></div>
+						<div class="footer_wrap" >
+							<div class="flex-grow-1" ></div>
+							<div class="app-footer" >
+								<div class="row" >
+									<div class="col-md-9" >
+										<p ><strong >B4XCode - Ultimate Inventory With POS</strong></p>
+									</div>
+								</div>
+								<div class="footer-bottom border-top pt-3 d-flex flex-column flex-sm-row align-items-center" >
+									<div class="d-flex align-items-center" >
+										<img alt="" class="logo"  src="images/logo.png">
+										<div >
+											<div >
+												<p class="m-0" >© 2021 B4XCode</p>
+												<p class="m-0" >All rights reserved</p>
+											</div>
+										</div><span class="flex-grow-1" ></span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</main>
+			</div>
+		</div>
+	</div>
+	<script src="js/bundle/pos.js">
+	</script>
+	
+	<script src="lib/jquery/jquery.js"></script>
+	    <script src="lib/datatables/jquery.dataTables.js"></script>
+    
+    <script src="lib/select2/js/select2.min.js"></script>
+	
+	<style>
+.mystyle {
+  left:120px !important;
+  display:block !important;
+}
+
+.mystyle2 {
+  display:block !important;
+}
+
+.mystyle3 {
+  display:none !important;
+}
+
+.mystyle4 {
+  left:-240px !important;
+  display:block !important;
+}
+
+</style>
+
+	
+	<script>
+	 
+	
+	var showHide = document.querySelector("ul");
+showHide.addEventListener("click", function (e){
+
+  
+	var x = document.getElementsByClassName("mystyle2");
+  var i;
+  for (i = 0; i < x.length; i++) {
+ x[i].classList.remove("mystyle3");
+ x[i].classList.remove("mystyle2");
+    x[i].classList.add("mystyle3");
+ 
+  }
+	
+	var idofclicked = e.target.id
+ 
+	 var element2 = document.getElementById(idofclicked+'child')
+	   element2.classList.remove("mystyle3");
+	   element2.classList.remove("mystyle2");
+	element2.classList.add("mystyle2");
+		 
+ 
+var element = document.getElementById("divlefthiddenitems");
+ element.classList.remove("mystyle");
+   element.classList.add("mystyle");
+
+
+});
+ 
+	</script>
+	
+	
+	<script>
+	
+var something = document.getElementById('divmenutoggel');
+something.style.cursor = 'pointer';
+something.onclick = function() {
+ 
+	var element111 = document.getElementById("divlefthiddenitems");
+   element111.classList.remove("mystyle");
+
+};
+
+	
+	</script>
+	
+	 
+	   
+
+<div id="divismobiledev">0</div>
+
+	
+	<!-- ------------------------------------ -->
+	
+	
+	
+	
+	 <script>
+      $(function(){
+        'use strict';
+
+        $('#datatable1').DataTable({
+          responsive: true,
+          language: {
+            searchPlaceholder: 'Search...',
+            sSearch: '',
+            lengthMenu: '_MENU_ items/page',
+          }
+        });
+
+        $('#datatable2').DataTable({
+          bLengthChange: false,
+          searching: false,
+          responsive: true
+        });
+
+        // Select2
+        $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
+
+      });
+    </script>
+
+
+	
+ <script>
+    //connect to the web socket when the page is ready.
+    $( document ).ready(function() {
+        b4j_connect("/AddUsersInformation");
+    });
+	</script>
+ 
+
+  </body>
+
+
+</html>

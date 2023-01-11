@@ -1,0 +1,168 @@
+﻿AppType=StandardJava
+Build1=Default,b4j.example
+Group=Default Group
+Library1=jcore
+Library2=jserver
+Library3=jsql
+Module1=AddAdjustInfo
+Module10=AddSalesInfo
+Module11=AddSupplierInformation
+Module12=AddTransferInfo
+Module13=AddUsersInformation
+Module14=AddWarehouseInfo
+Module15=AdjusmentInformation
+Module16=CatsInformation
+Module17=ClstblSoldProducts
+Module18=ClsTempProducts
+Module19=CreateBarcode
+Module2=AddCatInfo
+Module20=CurrenciesInformation
+Module21=CustomersInformation
+Module22=Dashboard
+Module23=ExpensesInformation
+Module24=Login
+Module25=PagePOS
+Module26=ProductsInformation
+Module27=PurchaseInformation
+Module28=ReturnPurchaseInformation
+Module29=ReturnSalesInformation
+Module3=AddCurrenciesInformation
+Module30=SalesInformation
+Module31=SessionCreator
+Module32=SupplierInformation
+Module33=TransferInformation
+Module34=UsersInformation
+Module35=UsersLogsInformation
+Module36=WarehouseInformation
+Module4=AddCustomersInformation
+Module5=AddExpensesInfo
+Module6=AddProductsInformation
+Module7=AddPurchaseInfo
+Module8=AddReturnPurchaseInfo
+Module9=AddReturnSalesInfo
+NumberOfFiles=0
+NumberOfLibraries=3
+NumberOfModules=36
+Version=9.8
+@EndOfDesignText@
+#Region Project Attributes 
+	#CommandLineArgs:
+	#MergeLibraries: True
+	'#AdditionalJar: jtds-1.3.1
+	#AdditionalJar: mysql-connector-java-8.0.27
+	
+	
+	
+#End Region
+
+Sub Process_Globals
+	Private srvr As Server
+	Public pool As ConnectionPool
+	
+End Sub
+
+Sub AppStart (Args() As String)
+	'pool.Initialize("net.sourceforge.jtds.jdbc.Driver","jdbc:jtds:sqlserver://192.168.0.55:1433/B4JStockPOS","sa","Correo12!")
+	pool.Initialize("com.mysql.cj.jdbc.Driver","jdbc:mysql://localhost/B4JStockPOS?characterEncoding=utf8","root","")
+	
+	srvr.Initialize("srvr")
+	srvr.Port = 17178
+	srvr.StaticFilesFolder = File.Combine(File.DirApp, "www")
+	srvr.AddWebSocket("/PagePOS", "PagePOS")
+	
+	srvr.AddWebSocket("/CurrenciesInformation", "CurrenciesInformation")
+	srvr.AddWebSocket("/AddCurrenciesInformation", "AddCurrenciesInformation")
+	
+	srvr.AddWebSocket("/CustomersInformation", "CustomersInformation")
+	srvr.AddWebSocket("/AddCustomersInformation", "AddCustomersInformation")
+	
+	srvr.AddWebSocket("/SupplierInformation", "SupplierInformation")
+	srvr.AddWebSocket("/AddSupplierInformation", "AddSupplierInformation")
+	
+	
+	srvr.AddWebSocket("/ProductsInformation", "ProductsInformation")
+	srvr.AddWebSocket("/AddProductsInformation", "AddProductsInformation")
+	
+	srvr.AddWebSocket("/UsersInformation", "UsersInformation")
+	srvr.AddWebSocket("/AddUsersInformation", "AddUsersInformation")
+	
+	srvr.AddWebSocket("/CatsInformation", "CatsInformation")
+	srvr.AddWebSocket("/AddCatInfo", "AddCatInfo")
+	
+	
+	srvr.AddWebSocket("/WarehouseInformation", "WarehouseInformation")
+	srvr.AddWebSocket("/AddWarehouseInfo", "AddWarehouseInfo")
+	
+	
+	srvr.AddWebSocket("/SalesInformation", "SalesInformation")
+	srvr.AddWebSocket("/AddSalesInfo", "AddSalesInfo")
+	
+	
+	srvr.AddWebSocket("/TransferInformation", "TransferInformation")
+	srvr.AddWebSocket("/AddTransferInfo", "AddTransferInfo")
+	
+	
+	srvr.AddWebSocket("/PurchaseInformation", "PurchaseInformation")
+	srvr.AddWebSocket("/AddPurchaseInfo", "AddPurchaseInfo")
+	
+	
+	srvr.AddWebSocket("/ReturnPurchaseInformation", "ReturnPurchaseInformation")
+	srvr.AddWebSocket("/AddReturnPurchaseInfo", "AddReturnPurchaseInfo")
+	
+	
+	srvr.AddWebSocket("/AdjusmentInformation", "AdjusmentInformation")
+	srvr.AddWebSocket("/AddAdjustInfo", "AddAdjustInfo")
+	
+	srvr.AddWebSocket("/ExpensesInformation", "ExpensesInformation")
+	srvr.AddWebSocket("/AddExpensesInfo", "AddExpensesInfo")
+	
+	srvr.AddWebSocket("/CreateBarcode", "CreateBarcode")
+	
+	srvr.AddWebSocket("/Login", "Login")
+	
+	srvr.AddWebSocket("/Dashboard", "Dashboard")
+	
+	srvr.AddFilter("/b4j_ws.js", "SessionCreator", False)
+
+	srvr.Start
+	StartMessageLoop
+
+
+	'open browser and navigate to: http://127.0.0.1:17178/login.html
+ 
+End Sub
+
+public Sub ValidateUsers(ws As WebSocket,lblusernamemain As JQueryElement,divMenu As JQueryElement)
+	Try
+		If ws.Session.GetAttribute("UserID") = Null Or 0 = ws.Session.GetAttribute("UserID") Then
+			
+				ws.Eval("document.location.replace('login.html')",Null)
+		Else
+			lblusernamemain.SetHtml(ws.Session.GetAttribute("UserFullName"))
+		End If
+		
+	Catch
+		Log(LastException)
+	End Try
+End Sub
+
+Public Sub Insert_UsersLogs(ws As WebSocket,ActivityDesc As String)
+	Try
+		Dim ActivityDatetime As String
+		ActivityDatetime = DateTime.Date(DateTime.Now) & " " & DateTime.Time(DateTime.Now)
+		
+		Dim sql1 As SQL
+		sql1 = pool.GetConnection
+		
+		sql1.BeginTransaction
+		sql1.ExecNonQuery2("insert into UsersLogs (UserID,ActivityDesc,ActivityDatetime) values (?,?,?)", _
+		Array As Object(ws.Session.GetAttribute("UserID"),ActivityDesc,ActivityDatetime))
+		sql1.TransactionSuccessful
+		
+		sql1.Close
+		
+	Catch
+		Log(LastException)
+	End Try
+End Sub
+

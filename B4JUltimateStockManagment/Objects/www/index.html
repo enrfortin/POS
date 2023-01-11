@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html class="" dir="" lang="en">
+<head>
+	<meta charset="utf-8">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+	<meta content="IE=edge" http-equiv="X-UA-Compatible">
+	<meta content="width=device-width,initial-scale=1.0" name="viewport">
+	<link href="dashboardcss/style.css" rel="stylesheet">
+	<link href="dashboardcss/style1.css" rel="stylesheet">
+	<link href="dashboardcss/style3.css" rel="stylesheet">
+	<title>Sistema de inventario y POS</title>
+	<script charset="utf-8" src="js/bundle/92.js">
+	</script>
+	<script charset="utf-8" src="js/bundle/People.js">
+	</script>
+	<script charset="utf-8" src="js/bundle/0.js">
+	</script>
+	<script charset="utf-8" src="js/bundle/Suppliers.js">
+	</script>
+	<script charset="utf-8" src="js/bundle/customizer.js">
+	</script>
+	<script charset="utf-8" src="js/bundle/vendors_largeSidebar_pos.js">
+	</script>
+	<script charset="utf-8" src="js/bundle/vendors_largeSidebar.js">
+	</script>
+	<script charset="utf-8" src="js/bundle/largeSidebar.js">
+	</script>
+	<script charset="utf-8" src="js/bundle/vue-perfect-scrollbar.js">
+	</script>
+	<style type="text/css">
+	       .ps-container {
+	           position: relative
+	       }
+	</style>
+	
+	  <link href="lib/datatables/jquery.dataTables.css" rel="stylesheet">
+    <link href="lib/select2/css/select2.min.css" rel="stylesheet">
+	
+	
+	<link href="lib/morris.js/morris.css" rel="stylesheet">
+	<link href="lib/rickshaw/rickshaw.min.css" rel="stylesheet">
+	
+	<script src="/b4j_ws.js"></script>
+	
+	
+</head>
+<body class=" text-left">
+	 
+	<div>
+		<div>
+			<div class="app-admin-wrap layout-sidebar-large clearfix">
+				<div class="main-header">
+					<div class="logo">
+						<a class="" href="index.html"><img alt="" height="60" src="images/logo-default.png" width="60"></a>
+					</div>
+					<div class="menu-toggle" id="divmenutoggel">
+						<div></div>
+						<div></div>
+						<div></div>
+					</div>
+					<div style="margin: auto;"></div>
+					<div class="header-part-right">
+						<a class="btn btn-outline-primary tn-sm btn-rounded" href="POS/POS.html"><span class="ul-btn__text ml-1">POS</span></a>  
+					  
+						<div class="dropdown">
+							<div class="dropdown b-dropdown m-md-2 user col align-self-end d-none d-md-block btn-group" id="dropdown-1">
+								<!----><button onclick="document.location.replace('login.html');" aria-expanded="false" aria-haspopup="true" class="btn dropdown-toggle btn-link text-decoration-none dropdown-toggle-no-caret" id="dropdown-1__BV_toggle_" type="button"><img alt="" aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" id="userDropdown" src="images/avatar/imgsignout.png"></button>
+							 
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="side-content-wrap" >
+				<section class="ps-container sidebar-left rtl-ps-none ps scroll open ps--active-y" style=" overflow-y: auto !important; ">
+						<div >
+							<ul class="navigation-left" >
+								<li class="nav-item active" id="navmaindashboard" >
+									<a class="nav-item-hold"  href="index.html"><i class="nav-icon i-Bar-Chart" ></i> <span class="nav-text" >Tablero</span></a>
+								</li>
+								<li class="nav-item"  id="navmainproducts">
+									<a class="nav-item-hold"  id="navmainproducts"><i class="nav-icon i-Library" id="navmainproducts"></i> <span class="nav-text" id="navmainproducts">Productos</span></a>
+									<div class="triangle" id="navmainproducts"></div>
+								</li>
+								<li class="nav-item" id="navmainpadjustment" >
+									<a class="nav-item-hold"  id="navmainpadjustment"><i class="nav-icon i-Edit-Map" id="navmainpadjustment"></i> <span class="nav-text" id="navmainpadjustment" >Cotizaciones</span></a>
+									<div class="triangle" id="navmainpadjustment"></div>
+								</li>
+								<li class="nav-item"  id="navmaintransfers">
+									<a class="nav-item-hold"  id="navmaintransfers"><i class="nav-icon i-Back1" id="navmaintransfers"></i> <span class="nav-text" id="navmaintransfers" >Transferencias</span></a>
+									<div class="triangle" id="navmaintransfers"></div>
+								</li>
+								<li class="nav-item"  id="navmainexpenses">
+									<a class="nav-item-hold" id="navmainexpenses"><i class="nav-icon i-Wallet" id="navmainexpenses"></i> <span class="nav-text" id="navmainexpenses" >Gastos</span></a>
+									<div class="triangle" id="navmainexpenses"></div>
+								</li>
+								 
+								<li class="nav-item"  id="navmainpurchases">
+									<a class="nav-item-hold"  id="navmainpurchases"><i class="nav-icon i-Receipt" id="navmainpurchases"></i> <span class="nav-text"  id="navmainpurchases">Compras</span></a>
+									<div class="triangle" id="navmainpurchases"></div>
+								</li>
+								<li class="nav-item"   id="navmainsales">
+									<a class="nav-item-hold"  id="navmainsales"><i class="nav-icon i-Full-Cart" id="navmainsales"></i> <span class="nav-text" id="navmainsales">Ventas</span></a>
+									<div class="triangle" id="navmainsales"></div>
+								</li>
+								<li class="nav-item"  id="navmainsale_return">
+									<a class="nav-item-hold"  id="navmainsale_return"><i class="nav-icon i-Right" id="navmainsale_return"></i> <span class="nav-text" id="navmainsale_return">Devoluciones de ventas</span></a>
+									<div class="triangle" id="navmainsale_return"></div>
+								</li>
+								<li class="nav-item"  id="navmainpurchase_return" >
+									<a class="nav-item-hold"  id="navmainpurchase_return"><i class="nav-icon i-Left" id="navmainpurchase_return"></i> <span class="nav-text" id="navmainpurchase_return">Devoluciones de compras</span></a>
+									<div class="triangle" id="navmainpurchase_return"></div>
+								</li>
+								<li class="nav-item"   id="navmainPeople">
+									<a class="nav-item-hold"  id="navmainPeople"><i class="nav-icon i-Business-Mens" id="navmainPeople" ></i> <span class="nav-text" id="navmainPeople" >Personas</span></a>
+									<div class="triangle" id="navmainPeople" ></div>
+								</li>
+								<li class="nav-item"   id="navmainsettings">
+									<a class="nav-item-hold"  id="navmainsettings"><i class="nav-icon i-Data-Settings" id="navmainsettings" ></i> <span class="nav-text" id="navmainsettings">Opciones</span></a>
+									<div class="triangle" id="navmainsettings"></div>
+								</li>
+								
+								 
+							</ul>
+						</div>
+						<div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+							<div class="ps__thumb-x" style="left: 0px; width: 0px;" tabindex="0"></div>
+						</div>
+					 
+					</section>
+					<section class="ps-container sidebar-left-secondary ps rtl-ps-none" id="divlefthiddenitems" >
+						<div >
+							<ul class="childNav d-none" id="navmainproductschild" >
+								<li class="nav-item" >
+									<a class=""  href="AddProductsInfo.html"><i class="nav-icon i-Add-File" ></i> <span class="item-name" >Crear Producto</span></a>
+								</li>
+								<li class="nav-item" >
+									<a class=""  href="ProductsInformation.html"><i class="nav-icon i-Files" ></i> <span class="item-name" >Lista de Productos</span></a>
+								</li>
+								<li class="nav-item" >
+									<a class=""  href="CreateBarcode.html"><i class="nav-icon i-Bar-Code" ></i> <span class="item-name" >Imprimir Codigo de barras</span></a>
+								</li>
+							</ul> 
+														
+							<ul class="childNav d-none" id="navmainpadjustmentchild" >
+								<li class="nav-item" >
+									<a class=""  href="AddAdjustInfo.html"><i class="nav-icon i-Add-File" ></i> <span class="item-name" >Crear Cotizacion</span></a>
+								</li>
+								<li class="nav-item" >
+									<a class=""  href="AdjustmentInformation.html"><i class="nav-icon i-Files" ></i> <span class="item-name" >Lista de Cotizaciones</span></a>
+								</li>
+							</ul>
+							<ul class="childNav d-none" id="navmaintransferschild" >
+								<li class="nav-item" >
+									<a class=""  href="AddTransferInfo.html"><i class="nav-icon i-Add-File" ></i> <span class="item-name" >Crear Transferencia</span></a>
+								</li>
+								<li class="nav-item" >
+									<a class=""  href="TransferInformation.html"><i class="nav-icon i-Files" ></i> <span class="item-name" >Lista de transferencia</span></a>
+								</li>
+							</ul>
+							<ul class="childNav d-none" id="navmainexpenseschild" >
+								<li class="nav-item" >
+									<a class=""  href="AddExpensesInfo.html"><i class="nav-icon i-Add-File" ></i> <span class="item-name" >Crear Gasto</span></a>
+								</li>
+								<li class="nav-item" >
+									<a class=""  href="ExpensesInformation.html"><i class="nav-icon i-Files" ></i> <span class="item-name" >Lista de Gastos</span></a>
+								</li>
+							 
+							</ul>
+						 
+							<ul class="childNav d-none" id="navmainpurchaseschild" >
+								<li class="nav-item" >
+									<a class=""  href="AddPurchaseInfo.html"><i class="nav-icon i-Add-File" ></i> <span class="item-name" >Crear Compra</span></a>
+								</li>
+								<li class="nav-item" >
+									<a class=""  href="PurchaseInformation.html"><i class="nav-icon i-Files" ></i> <span class="item-name" >Lista de Compras</span></a>
+								</li>
+							</ul>
+							<ul class="childNav d-none" id="navmainsaleschild" >
+								<li class="nav-item" >
+									<a class=""  href="AddSalesInfo.html"><i class="nav-icon i-Add-File" ></i> <span class="item-name" >Crear Venta</span></a>
+								</li>
+								<li class="nav-item" >
+									<a class=""  href="SalesInformation.html"><i class="nav-icon i-Files" ></i> <span class="item-name" >Lista de Ventas</span></a>
+								</li>
+							</ul>
+							<ul class="childNav d-none" id="navmainsale_returnchild" >
+								<li class="nav-item" >
+									<a class=""  href="AddReturnSalesInfo.html"><i class="nav-icon i-Add-File" ></i> <span class="item-name" >Crear Devolucion</span></a>
+								</li>
+								<li class="nav-item" >
+									<a class=""  href="ReturnSalesInformation.html"><i class="nav-icon i-Files" ></i> <span class="item-name" >Lista de Devoluciones</span></a>
+								</li>
+							</ul>
+							<ul class="childNav d-none" id="navmainpurchase_returnchild" >
+								<li class="nav-item" >
+									<a class=""  href="AddReturnPurchaseInfo.html"><i class="nav-icon i-Add-File" ></i> <span class="item-name" >Crear Devolucion</span></a>
+								</li>
+								<li class="nav-item" >
+									<a class=""  href="ReturnPurchaseInformation.html"><i class="nav-icon i-Files" ></i> <span class="item-name" >Lista de Devoluciones</span></a>
+								</li>
+							</ul>
+							<ul class="childNav d-none" id="navmainPeoplechild" >
+								<li class="nav-item" >
+									<a class=""  href="CustomersInformation.html"><i class="nav-icon i-Administrator" ></i> <span class="item-name" >Lista de clientes</span></a>
+								</li>
+								<li class="nav-item" >
+									<a class="router-link-exact-active open"  href="SupplierInformation.html"><i class="nav-icon i-Administrator" ></i> <span class="item-name" >Lista de Proveedores</span></a>
+								</li>
+								<li class="nav-item" >
+									<a class=""  href="UsersInformation.html"><i class="nav-icon i-Administrator" ></i> <span class="item-name" >Lista de Usuarios</span></a>
+								</li>
+							</ul>
+							<ul class="childNav d-none" id="navmainsettingschild" >
+							  
+								<li class="nav-item" >
+									<a class=""  href="WarehouseInformation.html"><i class="nav-icon i-Clothing-Store" ></i> <span class="item-name" >Bodega</span></a>
+								</li>
+								<li class="nav-item" >
+									<a class=""  href="CatsInformation.html"><i class="nav-icon i-Duplicate-Layer" ></i> <span class="item-name" >Categoria</span></a>
+								</li>
+								 
+								
+							  
+							</ul>
+							
+						</div>
+						<div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+							<div class="ps__thumb-x" style="left: 0px; width: 0px;" tabindex="0"></div>
+						</div>
+						<div class="ps__rail-y" style="top: 0px; right: 0px;">
+							<div class="ps__thumb-y" style="top: 0px; height: 0px;" tabindex="0"></div>
+						</div>
+					</section>
+					<div class="sidebar-overlay" ></div>
+				</div>
+				<main>
+					<div class="main-content-wrap d-flex flex-column flex-grow-1 sidenav-open">
+						<div class="main-content">
+						
+														
+														<div class="row">
+								   <div class="col-sm-12 col-md-6 col-lg-3">
+									  <div class="card card-icon-bg card-icon-bg-primary o-hidden mb-30 text-center">
+										 <!----><!---->
+										 <div class="card-body">
+											<!----><!----><i class="i-Add-Cart"></i> 
+											<div class="content">
+											   <p class="text-muted mt-2 mb-0">Total Ventas</p>
+											   <p class="text-primary text-24 line-height-1 mb-2" id="lbltotalsales">0 $</p>
+											</div>
+										 </div>
+										 <!----><!---->
+									  </div>
+								   </div>
+								   <div class="col-sm-12 col-md-6 col-lg-3">
+									  <div class="card card-icon-bg card-icon-bg-primary o-hidden mb-30 text-center">
+										 <!----><!---->
+										 <div class="card-body">
+											<!----><!----><i class="i-Financial"></i> 
+											<div class="content">
+											   <p class="text-muted mt-2 mb-0">Total Impuestos</p>
+											   <p class="text-primary text-24 line-height-1 mb-2"  id="lbltotaltax">0 $</p>
+											</div>
+										 </div>
+										 <!----><!---->
+									  </div>
+								   </div>
+								   <div class="col-sm-12 col-md-6 col-lg-3">
+									  <div class="card card-icon-bg card-icon-bg-primary o-hidden mb-30 text-center">
+										 <!----><!---->
+										 <div class="card-body">
+											<!----><!----><i class="i-Money-2"></i> 
+											<div class="content">
+											   <p class="text-muted mt-2 mb-0">Gastos</p>
+											   <p class="text-primary text-24 line-height-1 mb-2" id="lbltotalexpenses">0 $</p>
+											</div>
+										 </div>
+										 <!----><!---->
+									  </div>
+								   </div>
+								   <div class="col-sm-12 col-md-6 col-lg-3">
+									  <div class="card card-icon-bg card-icon-bg-primary o-hidden mb-30 text-center">
+										 <!----><!---->
+										 <div class="card-body">
+											<!----><!----><i class="i-Money-Bag"></i> 
+											<div class="content">
+											   <p class="text-muted mt-2 mb-0">Total Devoluciones</p>
+											   <p class="text-primary text-24 line-height-1 mb-2" id="lbltotalreturns">0 $</p>
+											</div>
+										 </div>
+										 <!----><!---->
+									  </div>
+								   </div>
+								</div>
+								
+								
+								
+								
+								<div class="row">
+								
+								<div class="col-md-12">
+   <div class="card mb-30">
+      <div class="card-body p-3">
+         <h5 class="card-title border-bottom p-3 mb-2">Top Productos Vendidos</h5>
+         <div class="vgt-wrap ">
+            <!----> 
+            <div class="vgt-inner-wrap">
+               <!----> <!----> <!----> 
+               <div class="vgt-fixed-header">
+                  <!---->
+               </div>
+               <div class="vgt-responsive" id="divtopsellingproducts">
+                 
+               </div>
+               <!----> <!---->
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+								
+								
+								
+								
+								</div>
+														
+						</div>
+						<div class="flex-grow-1"></div>
+						<div class="footer_wrap" >
+							<div class="flex-grow-1" ></div>
+							<div class="app-footer" >
+								<div class="row" >
+									<div class="col-md-9" >
+										<p ><strong >Sistema de inventario y POS</strong></p>
+									</div>
+								</div>
+								<div class="footer-bottom border-top pt-3 d-flex flex-column flex-sm-row align-items-center" >
+									<div class="d-flex align-items-center" >
+										<img alt="" class="logo"  src="images/logo.png">
+										<div >
+											<div >
+												<p class="m-0" >© 2023 Soluciones Informáticas Fortin</p>
+												<p class="m-0" >Todos los derechos reservados</p>
+											</div>
+										</div><span class="flex-grow-1" ></span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</main>
+			</div>
+		</div>
+	</div>
+	<script src="js/bundle/pos.js">
+	</script>
+	 
+    
+ 
+	
+	
+	
+	  <script src="lib/jquery/jquery.js"></script>
+    <script src="lib/popper.js/popper.js"></script>
+    <script src="lib/bootstrap/bootstrap.js"></script>
+    <script src="lib/perfect-scrollbar/js/perfect-scrollbar.jquery.js"></script>
+    <script src="lib/jquery-toggles/toggles.min.js"></script>
+    <script src="lib/d3/d3.js"></script>
+ 
+     
+    <script src="lib/Flot/jquery.flot.js"></script>
+    <script src="lib/Flot/jquery.flot.pie.js"></script>
+    <script src="lib/Flot/jquery.flot.resize.js"></script>
+    <script src="lib/flot-spline/jquery.flot.spline.js"></script>
+	
+	
+	
+    <script src="lib/js/mainjs.js"></script>
+    <script src="lib/js/ResizeSensor.js"></script>
+ 
+	
+	
+	<style>
+.mystyle {
+  left:120px !important;
+  display:block !important;
+}
+
+.mystyle2 {
+  display:block !important;
+}
+
+.mystyle3 {
+  display:none !important;
+}
+
+.mystyle4 {
+  left:-240px !important;
+  display:block !important;
+}
+
+</style>
+
+	
+	<script>
+	 
+	
+	var showHide = document.querySelector("ul");
+showHide.addEventListener("click", function (e){
+
+  
+	var x = document.getElementsByClassName("mystyle2");
+  var i;
+  for (i = 0; i < x.length; i++) {
+ x[i].classList.remove("mystyle3");
+ x[i].classList.remove("mystyle2");
+    x[i].classList.add("mystyle3");
+ 
+  }
+	
+	var idofclicked = e.target.id
+ 
+	 var element2 = document.getElementById(idofclicked+'child')
+	   element2.classList.remove("mystyle3");
+	   element2.classList.remove("mystyle2");
+	element2.classList.add("mystyle2");
+		 
+ 
+var element = document.getElementById("divlefthiddenitems");
+ element.classList.remove("mystyle");
+   element.classList.add("mystyle");
+
+
+});
+ 
+	</script>
+	
+	
+	<script>
+	
+var something = document.getElementById('divmenutoggel');
+something.style.cursor = 'pointer';
+something.onclick = function() {
+ 
+	var element111 = document.getElementById("divlefthiddenitems");
+   element111.classList.remove("mystyle");
+
+};
+
+	
+	</script>
+	
+	
+	<!-- --------------------------------------------------------------- -->
+	 
+	
+ <script>
+    //connect to the web socket when the page is ready.
+    $( document ).ready(function() {
+        b4j_connect("/Dashboard");
+    });
+	</script>
+
+
+<script>
+function editTbl(val) {
+  //alert(val);
+  b4j_raiseEvent("Edit_button_table",{val});
+}
+</script>
+<script>
+function deleteTbl(val) {
+  //alert(val);
+  b4j_raiseEvent("Delete_button_table",{val});
+}
+</script>
+ 
+
+
+<iframe id="txtArea1" style="display:none"></iframe>
+
+<script>
+function fnExcelReport()
+{
+    var tab_text="<table border='2px'><tr bgcolor='#87AFC6'>";
+    var textRange; var j=0;
+    tab = document.getElementById('datatable1'); // id of table
+
+    for(j = 0 ; j < tab.rows.length ; j++) 
+    {     
+        tab_text=tab_text+tab.rows[j].innerHTML+"</tr>";
+        //tab_text=tab_text+"</tr>";
+    }
+
+    tab_text=tab_text+"</table>";
+    tab_text= tab_text.replace(/<A[^>]*>|<\/A>/g, "");//remove if u want links in your table
+    tab_text= tab_text.replace(/<img[^>]*>/gi,""); // remove if u want images in your table
+    tab_text= tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // reomves input params
+
+    var ua = window.navigator.userAgent;
+    var msie = ua.indexOf("MSIE "); 
+
+    if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer
+    {
+        txtArea1.document.open("txt/html","replace");
+        txtArea1.document.write(tab_text);
+        txtArea1.document.close();
+        txtArea1.focus(); 
+        sa=txtArea1.document.execCommand("SaveAs",true,"Say Thanks to Sumit.xls");
+    }  
+    else                 //other browser not tested on IE 11
+        sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));  
+
+    return (sa);
+}
+</script>
+ 
+
+
+
+  </body>
+
+
+</html>
